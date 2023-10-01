@@ -1,6 +1,7 @@
 # eppTec
 Algo written in Java can be found in Algo/src folder
-Below you can find link to data model diagram and SQL query for the tables and exercises
+Below you can find link to data model diagram and SQL query for the tables and exercises.
+For a better structure of the queries I suggest opening the readme file in edit mode.
 
 https://app.creately.com/d/TLClNv2DgfD/edit
 
