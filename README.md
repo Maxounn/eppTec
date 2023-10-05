@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS Balance(
 );
 
 
-SELECT * FROM Klient
-LEFT JOIN Ucet 
+SELECT Klient.klient_id, jmeno, prijmeni FROM Klient
+INNER JOIN Ucet 
 ON Klient.klient_id = Ucet.klient_id
 JOIN (
 	SELECT ucet_id, SUM(jistina) as soucet_jistin
@@ -61,7 +61,7 @@ JOIN (
     GROUP BY ucet_id
 ) Balance 
 ON Ucet.ucet_id = Balance.ucet_id
-WHERE soucet_jistin > c;
+WHERE soucet_jistin > 3000;
 
 SELECT Klient.klient_id, jmeno, prijmeni, MAX(soucet_pohledavek) AS maximalni_vyska_pohledavek FROM Klient
 JOIN Ucet
@@ -69,7 +69,7 @@ ON Klient.klient_id = Ucet.klient_id
 JOIN( 
 	SELECT ucet_id, SUM(castka) AS soucet_pohledavek
     FROM Transakce
-    WHERE MONTH(datum_transakce) = MONTH(CURRENT_DATE())
+    WHERE MONTH(datum_transakce) = 10 AND YEAR(datum_transakce) = 2023
     GROUP BY ucet_id
 ) Transakce 
 ON Ucet.ucet_id = Transakce.ucet_id
